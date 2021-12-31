@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+  <form class="container-sm mx-auto" enctype="multipart/form-data" action="" method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <input class="btn btn-primary mb-3" type="submit" value="Yükle">
+  </form>
+{% endblock %}

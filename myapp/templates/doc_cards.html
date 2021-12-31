@@ -1,0 +1,19 @@
+{% for doc in document_list %}     <!--filtrelenen dokumanımız-->
+<div class="card col-md-6 offset-md-3" style="width: 36rem;"> <!--bu offset birim kaydırma için-->
+    <!-- <img src="..." class="card-img-top" alt="..."> -->
+    <div class="card-body">
+          {%for author in doc.authors.all %}  
+             <h4>Yazar:</h4>
+             <p class="card-text"> {{author.name}} {{author.surname}}</p>
+             <h5>Numara:</h5>
+             <p class="card-text">{{author.student_id}}</p>
+            {%endfor%}
+      <h5 class="card-title">{{doc.title}}
+         <small style="font-size: small;">{{doc.date}}</small>
+      </h5>
+      <p class="card-text">{{doc.summary|truncatechars:100}}</p>
+      <a href="{%url 'document_detail' doc.id%}" class="btn btn-primary">İncele</a>
+    </div>
+  </div>
+  <br>
+{% endfor %}

@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% block body%}
+
+  {% if form.errors %}
+    <p>Kullanıcı ismi ya da şifre hatalı.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p class="alert alert-danger" role="alert">Bu sayfayı görmek için yetkiniz yok</p>
+    {% else %}
+      <p class="alert alert-primary" role="alert">Bu sayfayı görmek için giriş yap</p>
+    {% endif %}
+  {% endif %}
+  <div class="container">
+    <div class="col-md-6 offset-md-3">
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <h1>GİRİŞ YAP</h1>
+    <table>
+      <tr>
+        <td>Kullanıcı:</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>Şifre:</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+    <input style="margin-top: 1rem;" class="btn btn-primary" type="submit" value="Giriş Yap">
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
+</div>
+    
+  
+{% endblock %}

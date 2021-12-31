@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if request.user.is_authenticated %}
+<div class="container-sm mx-auto">
+    <h2>Hoş Geldiniz, {{ request.user.username }}!</h2>
+    <a href="{% url 'document_upload' %}" class="btn btn-primary" role="button">Yükleme Yapınız</a>
+</div>
+{% else %}
+<div style="border-radius: 20px; border: 2px solid white; display: flex;"> <h3 style="margin-right: 4rem; margin: 1rem; " >Akademisyen Portalına Hoş Geldiniz </h3>
+<a style="text-align: center; margin-top: 16px;" href="login/"><button class="btn btn-danger"> Giriş Yapınız</button></a></div>
+<img src="https://wallpapercave.com/wp/wp2035648.jpg" style="width: 1536px; height: 582px;" alt="">
+
+{% endif %}
+{% endblock %}

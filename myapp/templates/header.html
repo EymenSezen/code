@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{%url 'index'%}">Portal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {%if request.user.is_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'document_upload'%}">Dosya Ekle</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'list'%}">Tüm Dokümanlar</a>
+        </li>
+        {%endif%}
+      </ul>
+      
+      <ul style="display: flex;" class="mb-0">
+        {% if not request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'register'%}"
+            style="background-color: #dc3545 ; border-radius: 0.25rem; color: white;">Üye Ol</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'login'%}"
+            style="background-color: #dc3545 ; margin-left: 8px; border-radius: 0.25rem; color: white;">Giriş Yap</a>
+        </li>
+        {%else%}
+        <li class="nav-item">
+          <a class="nav-link" href=# style="color: white;">{{request.user.username}}</a>
+        </li>
+        <li class="nav-item">
+          <a style="background-color: #dc3545; border-radius: 0.30rem; color: white;" class="nav-link"
+            href="{%url 'logout'%}">Çıkış</a>
+        </li>
+        {%endif%}
+      </ul>
+    </div>
+  </div>
+</nav>

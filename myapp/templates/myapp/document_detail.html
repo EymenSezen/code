@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="card col-md-6 offset-md-3" style="width: 36rem;"> <!--bu offset birim kaydırma için-->
+    <!-- <img src="..." class="card-img-top" alt="..."> -->
+    <div class="card-body">
+        <div class="row">
+             {%for author in document.authors.all %}  
+             <h4>Yazar:</h4>
+            <a href="{%url 'author_detail' author.name%}"><p class="card-text"> {{author.name}} {{author.surname}}</p></a> 
+             <h5>Numara:</h5>
+             <p class="card-text">{{author.student_id}}</p>
+            {%endfor%}
+        
+        </div>
+        <h5><a href="{%url 'full_detail' document.lesson document.term%}"><small style="font-size: small;"> {{document.date}}</small></a> </h5>
+         <h5 class="card-title">Proje Başlığı:
+           {{document.title}}
+      </h5> 
+      <h5>Dersin Adı</h5>
+      <a href="{% url 'lesson_detail' document.lesson%}"><p class="card-text">{{document.lesson}}</p></a>
+      <h5>Proje Adı</h5>
+      <a href="{%url 'project_detail' document.project%}"><p class="card-text">{{document.project}}</p> </a>
+      <h5>Özet</h5>
+      <p class="card-text">{{document.summary}}</p> 
+      <h5>Dönem</h5>
+      <p class="card-text">{{document.date}}</p>
+      <h5>Anahtar Kelimeler:</h5>
+      <p class="card-text">
+         {%for keyword in document.keywords.all %}
+         <a href="{% url 'keyword_detail' keyword.name %}">{{keyword.name}}</a> ,
+         {%endfor%}  
+      </p>
+      <h5>Jüriler</h5>
+      <p class="card-text">
+        {%for jury in document.jury.all%}
+        {{jury}} ,
+        {%endfor%} 
+        </p>  
+      <h5>Dönem</h5>
+      <a href="{% url 'term_detail' document.term %}"><p class="card-text">{{document.term}}</p></a>
+      
+      <a href="{{document.file.url}}"><p class="card-text">Dosyaya Ulaşmak İçin</p></a>
+      
+
+    </div>
+  </div>
+  <br>
+{% endblock %}
